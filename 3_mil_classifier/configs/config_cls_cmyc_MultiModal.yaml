@@ -1,0 +1,57 @@
+General:
+    epochs: &epochs 100
+    seed: 123456
+    acc_steps: 1
+    metric: "val_auc"
+
+type:
+  type: 'MultiModal'
+
+# wts: './workspace/models/config_cls_cmyc_MultiModal/cmyc/'
+seed&fold: [255,0]
+
+Data:
+    dataset_name: 'cls'
+    dataframe: "./workspace/datasets/cmyc.csv"
+    label_name: "cmyc"
+    test_df: null
+    feat_dir: "./Image_Features"
+    report_dir: "./Report_Features"
+    batch_size: 32
+    num_workers: 2
+    wsi_batch: true
+
+Model:
+    name: "models.mmclassifier.MMClassifier"
+    params:
+        image_mil_name: "models.clam.CLAM_Batch"
+        mil_params:
+            hidden_feat: 768
+            gate: true
+            size_arg: 'small'
+            dropout: true
+            instance_eval: false
+            subtyping: false
+            k_sample: 16
+        feat_dim: 2048
+        num_classes: 2
+
+
+Optimizer:
+    optimizer:
+        name: Adam
+        params:
+            lr: 0.001
+            weight_decay: 0.01
+            amsgrad: False
+    lr_scheduler:
+        name: CosineAnnealingLR
+        params:
+            T_max: *epochs
+            last_epoch: -1
+
+
+Loss:
+    name: "torch.nn.CrossEntropyLoss"
+    params:
+        reduction: 'mean'
