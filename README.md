@@ -110,7 +110,7 @@ First, set paths:
 ```python
 h5_root = "../1_process_wsi/outputs/patches"
 slide_root = "../1_process_wsi/WSIs_source"
-````
+```
 
 Then run:
 
@@ -196,3 +196,43 @@ Run model evaluation in:
 ```bash
 ./4_evaluation/Model_Evaluation.ipynb
 ```
+---
+
+## 👁️ Visualization
+
+The `configs` directory contains two files:  
+- A *CSV* file with metadata for the samples  
+- A *YAML* configuration file for visualization settings
+
+### CSV File
+The CSV file should include the following columns:
+
+- `patient_id`
+- `case_id`
+- `label`
+- `filename`
+- `resolution`
+
+You can refer to examples like:   `./configs/PUFH/pfs.csv`  
+
+
+### YAML File
+The YAML file specifies general visualization parameters. Example files:  `./configs/PUFH/pfs.yaml`  
+
+Important fields under the `General` section include:
+
+- `proj_name`: Task name, e.g., `pfs`, `os`, `shimada`, `subtype`, `alk`, `1p36`, `11q23`
+- `proj_type`: `cls` for classification, `reg` for Cox regression
+- `df_path`: Path to the corresponding CSV file containing sample metadata
+- `pretrained_dir`: Path to the pretrained model weights for visualization, you can get pretrained weights for visualization from [Google Drive](https://drive.google.com/drive/folders/1ECvYZxsMM5zbBTfeMift3eNJLGFMgthW?usp=sharing)
+- `patch_risk_heatmap`: Enable patch-level risk heatmap visualization
+- `patch_attention_heatmap`: Enable patch-level attention heatmap visualization
+
+### Running Visualization
+
+```bash
+cd ./5_visualization
+python draw.py
+```
+
+---

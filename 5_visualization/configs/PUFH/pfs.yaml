@@ -1,0 +1,42 @@
+General:
+    device: "cuda:0"
+    proj_name: 'pfs'
+    proj_type: 'reg'
+    df_path: "./configs/PUFH/pfs.csv"
+    wsi_dir: "../1_process_wsi/WSIs_source/"  
+    pretrained_dir: "../4_evaluation/model_weights/"    
+    coord_dir: "../1_process_wsi/outputs/patches"  
+    image_feature_dir: "../2_extract_features/outputs/images/" 
+    patch_risk_heatmap: True
+    patch_attention_heatmap: True
+
+Model: 
+    name: "models.vision_only.vision_only"
+    params:
+        feat_dim: 2048
+        n_classes: 1
+        hidden_feat: 768
+        gate: True
+        size_arg: "small"
+        dropout: false
+        k_sample: 16
+        subtyping: False
+        instance_eval: False
+
+
+Data:
+    patch_size: 1536  # crop WSI with this size 
+    patch_level: 0   # crop WSI with this level, always 0
+    encoder_patch_size: 384  # encoder input with this size  
+    feat_batch_size: 512
+    sampling_strategy: "topk"
+    k_sample: 64
+
+Heatmap:
+    vis_mpp: 1.0
+    blur: True
+    colormap: "jet"
+    overlay: 0.8
+    blank_canvas: False
+    alpha: 0.3
+
