@@ -9,7 +9,7 @@
 Jin Zhu¹⁰‡, Ruizhen Hu²‡, Xiyue Wang³‡, Qing Sun⁵‡, Zhenzhen Zhao¹, Juan Cao⁶, Peiying Pan⁷, Kun Wang⁷, Liyan Cui⁸,
 Hongping Tang⁹, Qianqian Fang¹, Sijin Jiang¹, Linli Lei¹, Wenjian Zhang¹, Jiajun Xie¹, Shuo Kang¹, Dongyuan Xiao¹,
 Ming Xiao¹², Xuan Zhai¹, Yuntao Jia¹, Junyang Chen², Wei Yuan⁴, Xiao Han⁴, Junhan Zhao¹¹, Sen Yang³,
-Yi Li²\*, Jinxi Xiang³\*, Biyue Zhu¹\*
+Yi Li²\*, [Jinxi Xiang](https://jinxixiang.com/)³\*, Biyue Zhu¹\*
 
 > ‡ Equal contribution · *Corresponding authors: [Biyue Zhu](mailto:biyuezhu@hospital.cqmu.edu.cn), [Jinxi Xiang](mailto:xiangjx@stanford.edu), [Yi Li](mailto:liyi@sz.tsinghua.edu.cn)*
 
@@ -145,7 +145,7 @@ python extract_report.py
 
 ## 🏋️ Training NEVA
 
-1. Navigate to training directory:
+1. Navigate to `3_mil_classifier` directory:
 
    ```bash
    cd ./3_mil_classifier
@@ -168,24 +168,45 @@ python extract_report.py
 
 ---
 
-## 💾 Pretrained Model Weights
 
-Download the model weights and place them in:
-`./NEVA/4_evaluation/model_weights/`
+## 💾 Download Pretrained Model Weights and Perform Inference.
 
-| Task             | Performance     | Weights                                                                                        |
-| ---------------- | --------------- | ---------------------------------------------------------------------------------------------- |
-| Risk Group       | AUROC = 0.898   | [Download](https://drive.google.com/file/d/1g75iUeCsTXae_J3csr2O7UUUXRTaDZ2P/view?usp=sharing) |
-| Subtype          | AUROC = 0.933   | [Download](https://drive.google.com/file/d/1rCxmsO5RNk-q8KLe4mlUW5dKhBpLqufJ/view?usp=sharing) |
-| MKI              | AUROC = 0.869   | [Download](https://drive.google.com/file/d/11aHCpRlqcdt2WQ4peiPxywIiOL7cjH-P/view?usp=sharing) |
-| Shimada          | AUROC = 0.857   | [Download](https://drive.google.com/file/d/1upOALcXuY6JYkdyPFydZwKTV6VLaog8D/view?usp=sharing) |
-| ALK              | AUROC = 0.877   | [Download](https://drive.google.com/file/d/1g3uDkHVAUFzW5657grXOmgDiD5D0gtWA/view?usp=sharing) |
-| NMYC             | AUROC = 0.864   | [Download](https://drive.google.com/file/d/1EU3C7845uZAbmcen4eqAqoqX8kuZhYin/view?usp=sharing) |
-| CMYC             | AUROC = 0.843   | [Download](https://drive.google.com/file/d/18QO3jdP9jcWsRfwGkj1DKnwOhTrzypM-/view?usp=sharing) |
-| 1p36 Deletion    | AUROC = 0.831   | [Download](https://drive.google.com/file/d/1v0G2Ytz_l9HmpiDzKtztfiTdkqcHkUN1/view?usp=sharing) |
-| 11q23 Deletion   | AUROC = 0.831   | [Download](https://drive.google.com/file/d/1dnPoJxA2LaZGQG0D6esHeLHaDwa1kPZK/view?usp=sharing) |
-| Overall Survival | C-index = 0.793 | [Download](https://drive.google.com/file/d/1Z_sPkAMqHHL6QGL5Bgmal7rVou2xZaDW/view?usp=sharing) |
-| PFS              | C-index = 0.743 | [Download](https://drive.google.com/file/d/14UsRMndaSZSnVJ7nmiYJdB2Jpvm4eza7/view?usp=sharing) |
+1. Download the model weights and place them in:
+`./4_evaluation/model_weights/`
+
+    | Task             | Performance     | Weights                                                                                        |
+    | ---------------- | --------------- | ---------------------------------------------------------------------------------------------- |
+    | Risk Group       | AUROC = 0.898   | [Download](https://drive.google.com/file/d/1g75iUeCsTXae_J3csr2O7UUUXRTaDZ2P/view?usp=sharing) |
+    | Subtype          | AUROC = 0.933   | [Download](https://drive.google.com/file/d/1rCxmsO5RNk-q8KLe4mlUW5dKhBpLqufJ/view?usp=sharing) |
+    | MKI              | AUROC = 0.869   | [Download](https://drive.google.com/file/d/11aHCpRlqcdt2WQ4peiPxywIiOL7cjH-P/view?usp=sharing) |
+    | Shimada          | AUROC = 0.857   | [Download](https://drive.google.com/file/d/1upOALcXuY6JYkdyPFydZwKTV6VLaog8D/view?usp=sharing) |
+    | ALK              | AUROC = 0.877   | [Download](https://drive.google.com/file/d/1g3uDkHVAUFzW5657grXOmgDiD5D0gtWA/view?usp=sharing) |
+    | NMYC             | AUROC = 0.864   | [Download](https://drive.google.com/file/d/1EU3C7845uZAbmcen4eqAqoqX8kuZhYin/view?usp=sharing) |
+    | CMYC             | AUROC = 0.843   | [Download](https://drive.google.com/file/d/18QO3jdP9jcWsRfwGkj1DKnwOhTrzypM-/view?usp=sharing) |
+    | 1p36 Deletion    | AUROC = 0.831   | [Download](https://drive.google.com/file/d/1v0G2Ytz_l9HmpiDzKtztfiTdkqcHkUN1/view?usp=sharing) |
+    | 11q23 Deletion   | AUROC = 0.831   | [Download](https://drive.google.com/file/d/1dnPoJxA2LaZGQG0D6esHeLHaDwa1kPZK/view?usp=sharing) |
+    | Overall Survival | C-index = 0.793 | [Download](https://drive.google.com/file/d/1Z_sPkAMqHHL6QGL5Bgmal7rVou2xZaDW/view?usp=sharing) |
+    | PFS              | C-index = 0.743 | [Download](https://drive.google.com/file/d/14UsRMndaSZSnVJ7nmiYJdB2Jpvm4eza7/view?usp=sharing) |
+
+
+2. Perform inference on your custom dataset using the pretrained weights.  
+
+   1. Navigate to `./4_evaluation` directory:
+
+        ```bash
+        cd ./4_evaluation
+        ```
+    2. Place your dataset in `./datasets/` folder.
+    3. Run inference script:
+
+       ```bash
+       python inference.py --type cls --task alk
+       ```
+
+    > * `--type`: `cls` for classification, `reg` for Cox regression
+    > * `--task`: one of `alk`, `1p36`, `11q23`, `pfs`, `os` , etc.
+
+    > Output: The result of the model inference will be saved in `./inference_outputs/`
 
 ---
 
@@ -234,5 +255,4 @@ Important fields under the `General` section include:
 cd ./5_visualization
 python draw.py
 ```
-
 ---

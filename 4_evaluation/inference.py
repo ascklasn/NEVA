@@ -1,7 +1,6 @@
 import pytorch_lightning as pl
 import torch.cuda
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
-from wsi_dataset import WSIDataModule
 import yaml
 import importlib
 from models import MILModel
@@ -29,7 +28,7 @@ def read_yaml(fpath):   # Read config configuration
         return dict(yml)
 
 def read_config(fname):
-    return read_yaml(f"./configs/{fname}.yaml")
+    return read_yaml(f"../3_mil_classifier/configs/{fname}.yaml")
 
 
 def get_obj_from_str(string, reload=False):      # Dynamically obtain the required model class
@@ -52,13 +51,12 @@ def fix_seed(seed):
     torch.use_deterministic_algorithms(True, warn_only=True)  # torch >= 1.8
 
 
-
 def setup_workspace(workspace):
     os.makedirs(workspace, exist_ok=True)
 
 
-def save_results(results, fname):
-    results_dir = f"./workspace/results_MultiModal"  # Directory to save results
+def save_results(results, fname): 
+    results_dir = f"./inference_outputs"  # Directory to save results
     os.makedirs(results_dir, exist_ok=True)
     print('\n'*10)
     print("A new directory has been created, and the result of each seed contains 5 fold auc")
@@ -68,93 +66,94 @@ def save_results(results, fname):
         f.write('\n')
 
 
-# TODO just need inference using custom datase
-
-
-"""
-def main(type: str, task: str="alk"):
+def inference(type: str, task: str = "alk"):
+    """
+    Perform inference on the specified task and type.
     
-    MultiModal_list=['config_cls_alk_MultiModal','config_cls_cmyc_MultiModal',
-                    'config_cls_hazard_level_MultiModal','config_cls_mki_MultiModal',
-                    'config_cls_nmyc_MultiModal','config_cls_shimada_MultiModal',
-                    'config_cls_subtype_MultiModal',
-                    'config_cls_p36_MultiModal','config_cls_q23_MultiModal'
-                    'config_reg_os_MultiModal','config_reg_pfs_MultiModal',]
+    Args:
+        type (str): Type of task, either 'cls' for classification or 'reg' for regression.
+        task (str): Specific task to perform, e.g., 'alk', 'cmyc', etc.
+    """
+    # Read configuration
+    config_yaml_name = f"config_{type}_{task}_MultiModal"  # e.g. config_cls_alk_MultiModal
+    config = read_config(config_yaml_name)  # Read the configuration file
+    seed, fold = config['seed&fold']  # Extract seed and fold from the configuration
+    fix_seed(seed)  # Set the random seed for reproducibility
+
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    wts_path = f"./model_weights/{task}.pth"
+    wts = torch.load(wts_path)
     
+    model = MILModel(config, save_path=None).to(device)
+    model.load_state_dict(wts, strict=True).to(device)  # Load the model weights
 
-    fname = f"config_{type}_{task}_MultiModal"  # e.g. config_cls_alk_MultiModal
-
-    config_yaml = read_config(fname)  # read the configuration file
+    df = pd.read_csv(f"./datasets/{task}.csv")  # Read the dataframe from the configuration
+    case_ids = df['case_id'].tolist()  # Extract case IDs from the dataframe
+    filenames = df['filenames'].tolist()  # Extract case IDs from the dataframe
     
-    seed,fold = config_yaml['seed&fold']
+    if type == 'cls':
+        labels = torch.tensor(df[f'{task}'].tolist())  # Extract labels from the dataframe
+    elif type == 'reg':
+        labels = torch.tensor(df[f'{task}'].tolist())
+        status = torch.tensor(df[f'status'].tolist())
 
-    for key, value in config_yaml.items():
-        print(f"{key.ljust(30)}: {value}")
-
-    num_gpus = 1
-    dist = False # 默认为False
-
-    original_csv = config_yaml['Data']['dataframe']   
-    proj_name = config_yaml['Data']['label_name']   
+    logits = []
     
+    for case_id, filename in zip(case_ids, filenames):
+        report_feature_path = f"../2_extract_features/report_large/{case_id}.pt"  # Path to the report feature file
+        image_feature_path = f".../2_extract_features/images/{filename}.pt"  # Path to the image feature file
+        assert os.path.exists(report_feature_path) and os.path.exists(image_feature_path), \
+            f"Missing feature file(s): {', '.join([p for p in [report_feature_path, image_feature_path] if not os.path.exists(p)])}"
+        
+        image_feature = torch.load(image_feature_path).unsqueeze(0).to(device)
+        report_feature = torch.load(report_feature_path).unsqueeze(0).to(device)  # Load the report feature
+        with torch.inference_mode():
+            logit, results_dict = model((image_feature, report_feature))
+        logits.append(logit.cpu().numpy())  # Append the logit to the list
 
-    fix_seed(seed) # seed everything
-    workspace = f"./outputs_{fname}"  
-    rets_fold = []  # save the performance of each fold   
+    logits = torch.cat(logits, dim=0)  # Concatenate all logits into a single tensor
 
-    setup_workspace(workspace) 
-
-
-    dm = WSIDataModule(config_yaml, split_k=fold, dist=dist)  # datamodule Preparation dataset: training set, validation set, test set
-    save_path = f"./workspace/models/{fname}/"    # Used to store logits, labels, and status files,
-    setup_workspace(save_path) 
-
-
-    model = MILModel(config_yaml, save_path=save_path)  #  pytorch_lighting 
-    trainer = prepare_trainer(config_yaml, num_gpus, workspace, config_yaml['General']['metric'])
-
-    trainer.fit(model, datamodule=dm, ckpt_path=None)  # trainer.fit: Training and Validation
-    
-    wts = trainer.checkpoint_callback.best_model_path  
-    print('The best checkpoint path is：\n',wts)
-    if os.path.exists(wts) == False:
-        print('The best checkpoint does not exist')
-    else:
-        print('The best checkpoint exists')
-
-    trainer.test(datamodule=dm, ckpt_path='best')    # trainer.test: Testing the model on the test set
-    rets_fold.append(model.test_performance)   
-
-    torch.save(torch.load(wts)['state_dict'], f'{save_path}/{proj_name}.pth')  # ! Used to save the model parameters
-    os.system(f"rm -rf {workspace}")  
-
-    macro_avg = np.mean(rets_fold)
-    macro_std = np.std(rets_fold)
-    metric_name = 'cindex' if config_yaml['General']['metric'] == 'val_cindex' else 'auc'
-    results = {
-        proj_name: {
-            "seed": seed,
-            f"macro_{metric_name}": round(macro_avg, 4),   
-            "macro_std": round(macro_std, 4),  
-            "folds": rets_fold,  
+    if type == 'cls':
+        probs = torch.softmax(logits, dim=1)  # Apply softmax to get probabilities
+        preds = torch.argmax(probs, dim=1)  # Get the predicted classes
+        print(f"Predicted classes: {preds}\n Labels: {labels}")
+        results = {
+            f'{task}': labels,
+            'preds': preds,
         }
-    }
-    save_results(results, fname) 
+        torch.save(results, f"./inference_outputs/{task}_results.pth")  # Save the results
+
+    elif type == 'reg':
+        results = {
+            f'{task}': labels,
+            'status': status,
+            'hazard scores': logits,
+        }
+        torch.save(results, f"./inference_outputs/{task}_results.pth")  # Save the results
+
+args = argparse.ArgumentParser(description='Inference for NEVA model using multimodal data')
+args.add_argument('--type', type=str, choices=['cls', 'reg'], default='cls',
+                  help='Type of task (e.g. classification, regression)')
+args.add_argument('--task', type=str, choices=['hazard_level', 'subtype', 'mki', 'shimada', 'alk', 'nmyc', 'cmyc', 'p36', 'q23', 'os', 'pfs'],
+                  help='Specific task to perform') 
 
 
-parser = argparse.ArgumentParser(description='Train NEVA model using multimodal data')
-parser.add_argument('--type', type=str, choices=['cls', 'reg'], default='cls',
-                    help='type of task (e.g. classification, Cox Regression)')
-parser.add_argument('--task', type=str, choices=[ 'hazard_level', 'subtype','mki', 'shimada', 'alk', 'nmyc', 'cmyc', 'p36', 'q23', 'os', 'pfs'],
-                    help='specific task to perform')
 
 if __name__ == "__main__":
-    args = parser.parse_args()
+    args = args.parse_args()
     print(f"Arguments: {args}")
     print(f"Type: {args.type}, Task: {args.task}")
+
     if args.type not in ['cls', 'reg']:
         raise ValueError("Invalid type. Choose either 'cls' or 'reg'.")
     
-    main(type=args.type, task=args.task)  # e.g. type='cls', task='alk'
+    if args.task not in ['hazard_level', 'subtype', 'mki', 'shimada', 'alk', 'nmyc', 'cmyc', 'p36', 'q23', 'os', 'pfs']:
+        raise ValueError("Invalid task. Choose a valid task from the list.")
+    
+    # Perform inference
+    inference(type=args.type, task=args.task)  # e.g. type='cls',
 
-"""
+    print(f"Results saved to './inference_outputs/{args.task}_results.pth'")  # Indicate where the results are saved
+
+
+    
