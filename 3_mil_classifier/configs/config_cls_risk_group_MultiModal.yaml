@@ -7,13 +7,13 @@ General:
 type:
   type: 'MultiModal'
 
-wts: './workspace/models/config_cls_p36_MultiModal/p36/'
-seed&fold: [526,1]
+wts: './workspace/models/config_cls_risk_group_MultiModal/risk_group/'
+seed&fold: [493,2]
 
 Data:
     dataset_name: 'cls'
-    dataframe: "./workspace/datasets/p36.csv"
-    label_name: "p36"
+    dataframe: "./workspace/datasets/risk_group.csv"
+    label_name: "risk_group"
     test_df: null
     feat_dir: "./Image_Features"
     report_dir: "./Report_Features"
@@ -21,12 +21,13 @@ Data:
     num_workers: 2
     wsi_batch: true
 
+
 Model:
     name: "models.mmclassifier.MMClassifier"
     params:
         image_mil_name: "models.clam.CLAM_Batch"
         mil_params:
-            hidden_feat: 768   # 是经过clam_Batch输出的每个bag的特征维度
+            hidden_feat: 768
             gate: true
             size_arg: 'small'
             dropout: true
@@ -34,7 +35,7 @@ Model:
             subtyping: false
             k_sample: 16
         feat_dim: 2048
-        num_classes: 2
+        num_classes: 3
 
 
 Optimizer:

@@ -4,7 +4,7 @@ General:
     proj_type: 'reg'
     df_path: "./configs/PUFH/pfs.csv"
     wsi_dir: "../1_process_wsi/WSIs_source/"  
-    pretrained_dir: "../4_evaluation/model_weights/"    
+    pretrained_dir: "./visualization_model_weights/"    
     coord_dir: "../1_process_wsi/outputs/patches"  
     image_feature_dir: "../2_extract_features/outputs/images/" 
     patch_risk_heatmap: True

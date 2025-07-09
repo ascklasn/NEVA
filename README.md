@@ -46,11 +46,13 @@ Yi Li²\*, [Jinxi Xiang](https://jinxixiang.com/)³\*, Biyue Zhu¹\*
 **NEVA** (**NE**uroblastoma **V**ision--language **A**I) is a unified foundation model trained on whole-slide histopathology images and pathology reports to perform 11 clinically essential tasks related to neuroblastoma diagnosis, biomarker prediction, and prognosis.
 
 NEVA was trained and validated using the largest known multi-institutional neuroblastoma dataset to date:  
+
 - **1,070 patients**  
 - **1,255 pathology reports**  
 - **3,436 whole-slide images (WSIs)**  
 
 It achieves robust performance over unimodal and conventional models in:  
+
 - Classifying tumor **Risk Groups**, histologic **Subtypes**, **Mitotic-Karyorrhectic Index (MKI)**, and **Shimada classification**  
 - Predicting molecular markers: **ALK**, **NMYC**, **CMYC**, **1p36**, and **11q23**  
 - Forecasting **Progression-Free Survival (PFS)** and **Overall Survival (OS)**  
@@ -65,12 +67,14 @@ It achieves robust performance over unimodal and conventional models in:
 ## 🔧 Installation
 
 1. Clone the repository:
+
     ```bash
     git clone https://github.com/ascklasn/NEVA.git
     cd NEVA
     ```
 
 2. Create and activate the conda environment:
+
     ```bash
     conda env create -n NEVA -f environment.yml
     conda activate NEVA
@@ -83,6 +87,7 @@ It achieves robust performance over unimodal and conventional models in:
 WSI preprocessing is adapted from [CLAM](https://github.com/mahmoodlab/CLAM).
 
 1. Navigate to the preprocessing directory:
+
     ```bash
     cd ./1_process_wsi
     ```
@@ -90,6 +95,7 @@ WSI preprocessing is adapted from [CLAM](https://github.com/mahmoodlab/CLAM).
 2. Place `.svs` or other raw WSIs in the `./WSIs_source` folder.
 
 3. Choose a config file from `./preset` and generate tiles, segmentation masks, thumbnails, and metadata:
+
     ```bash
     python gen_tiles.py --source ./WSIs_source --save_dir ./outputs --preset NEVA.csv --patch --seg --stitch
     ```
@@ -107,6 +113,7 @@ WSI preprocessing is adapted from [CLAM](https://github.com/mahmoodlab/CLAM).
 ### 1. Patch-Level Feature Extraction (WSIs)
 
 First, set paths:
+
 ```python
 h5_root = "../1_process_wsi/outputs/patches"
 slide_root = "../1_process_wsi/WSIs_source"
@@ -153,7 +160,7 @@ python extract_report.py
 
 2. Place your dataset CSV in `./workspace/datasets/`. Required columns:
 
-   * `patient_id`, `case_id`, `task_label`, `filename`, `fold`
+   - `patient_id`, `case_id`, `task_label`, `filename`, `fold`
 
 3. Run training script:
 
@@ -161,15 +168,14 @@ python extract_report.py
    python train_mil.py --type cls --task alk
    ```
 
-> * `--type`: `cls` for classification, `reg` for Cox regression
-> * `--task`: one of `alk`, `nmyc`, `cmyc`, `subtype`, etc.
+> - `--type`: `cls` for classification, `reg` for Cox regression
+> - `--task`: one of `alk`, `nmyc`, `cmyc`, `subtype`, etc.
 
 > Output: model weights saved in `./workspace/models/`
 
 ---
 
-
-## 💾 Download Pretrained Model Weights and Perform Inference.
+## 💾 Download Pretrained Model Weights and Perform Inference
 
 1. Download the model weights and place them in:
 `./4_evaluation/model_weights/`
@@ -188,7 +194,6 @@ python extract_report.py
     | Overall Survival | C-index = 0.793 | [Download](https://drive.google.com/file/d/1Z_sPkAMqHHL6QGL5Bgmal7rVou2xZaDW/view?usp=sharing) |
     | PFS              | C-index = 0.743 | [Download](https://drive.google.com/file/d/14UsRMndaSZSnVJ7nmiYJdB2Jpvm4eza7/view?usp=sharing) |
 
-
 2. Perform inference on your custom dataset using the pretrained weights.  
 
    1. Navigate to `./4_evaluation` directory:
@@ -196,15 +201,16 @@ python extract_report.py
         ```bash
         cd ./4_evaluation
         ```
-    2. Place your dataset in `./datasets/` folder.
-    3. Run inference script:
+
+   2. Place your dataset in `./datasets/` folder.
+   3. Run inference script:
 
        ```bash
        python inference.py --type cls --task alk
        ```
 
-    > * `--type`: `cls` for classification, `reg` for Cox regression
-    > * `--task`: one of `alk`, `1p36`, `11q23`, `pfs`, `os` , etc.
+    > - `--type`: `cls` for classification, `reg` for Cox regression
+    > - `--task`: one of `alk`, `1p36`, `11q23`, `pfs`, `os` , etc.
 
     > Output: The result of the model inference will be saved in `./inference_outputs/`
 
@@ -217,15 +223,18 @@ Run model evaluation in:
 ```bash
 ./4_evaluation/Model_Evaluation.ipynb
 ```
+
 ---
 
 ## 👁️ Visualization
 
 The `configs` directory contains two files:  
+
 - A *CSV* file with metadata for the samples  
 - A *YAML* configuration file for visualization settings
 
 ### CSV File
+
 The CSV file should include the following columns:
 
 - `patient_id`
@@ -236,8 +245,8 @@ The CSV file should include the following columns:
 
 You can refer to examples like:   `./configs/PUFH/pfs.csv`  
 
-
 ### YAML File
+
 The YAML file specifies general visualization parameters. Example files:  `./configs/PUFH/pfs.yaml`  
 
 Important fields under the `General` section include:
@@ -255,4 +264,5 @@ Important fields under the `General` section include:
 cd ./5_visualization
 python draw.py
 ```
+
 ---

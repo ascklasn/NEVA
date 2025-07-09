@@ -26,7 +26,6 @@ from scipy.stats import rankdata
 import oven
 import h5py
 import sys
-sys.path.append("/home/huruizhen/mil")
 import models
 import warnings
 warnings.simplefilter("ignore", category=FutureWarning)

@@ -7,13 +7,13 @@ General:
 type:
   type: 'MultiModal'
 
-# wts: './workspace/models/config_cls_hazard_level_MultiModal/hazard_level/'
-seed&fold: [493,2]
+wts: './workspace/models/config_cls_11q23_MultiModal/11q23/'
+seed&fold: [526,4]
 
 Data:
     dataset_name: 'cls'
-    dataframe: "./workspace/datasets/hazard_level.csv"
-    label_name: "hazard_level"
+    dataframe: "./workspace/datasets/11q23.csv"
+    label_name: "11q23"
     test_df: null
     feat_dir: "./Image_Features"
     report_dir: "./Report_Features"
@@ -21,13 +21,12 @@ Data:
     num_workers: 2
     wsi_batch: true
 
-
 Model:
     name: "models.mmclassifier.MMClassifier"
     params:
         image_mil_name: "models.clam.CLAM_Batch"
         mil_params:
-            hidden_feat: 768
+            hidden_feat: 768   # 是经过clam_Batch输出的每个bag的特征维度
             gate: true
             size_arg: 'small'
             dropout: true
@@ -35,7 +34,7 @@ Model:
             subtyping: false
             k_sample: 16
         feat_dim: 2048
-        num_classes: 3
+        num_classes: 2
 
 
 Optimizer:

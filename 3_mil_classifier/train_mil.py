@@ -108,7 +108,7 @@ def prepare_trainer(config_yaml, num_gpus, workspace, monitor="val_auc"):
 
     return pl.Trainer(
         accelerator="cuda",
-        devices=[1],  # todo 需要修改为0
+        devices=[0],   # your device id
         # strategy='ddp_find_unused_parameters_true',
         # strategy='ddp',
         deterministic=False,
@@ -151,7 +151,7 @@ def main(type: str, task: str="alk"):
         print(f"{key.ljust(30)}: {value}")
 
     num_gpus = 1
-    dist = False # 默认为False
+    dist = False # default : False
 
     original_csv = config_yaml['Data']['dataframe']   
     proj_name = config_yaml['Data']['label_name']   

@@ -7,13 +7,13 @@ General:
 type:
   type: 'MultiModal'
 
-wts: './workspace/models/config_cls_q23_MultiModal/q23/'
-seed&fold: [526,4]
+wts: './workspace/models/config_cls_1p36_MultiModal/1p36/'
+seed&fold: [526,1]
 
 Data:
     dataset_name: 'cls'
-    dataframe: "./workspace/datasets/q23.csv"
-    label_name: "q23"
+    dataframe: "./workspace/datasets/1p36.csv"
+    label_name: "1p36"
     test_df: null
     feat_dir: "./Image_Features"
     report_dir: "./Report_Features"
