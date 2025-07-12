@@ -1,6 +1,8 @@
 
 ![header](https://capsule-render.vercel.app/api?type=soft&height=80&color=gradient&text=NEVA:%20A%20Unified%20Vision-Language%20Model%20for%20Precision%20Neuroblastoma%20Care&section=header&reversal=false&textBg=false&fontSize=23&fontAlign=50&animation=fadeIn)
 
+### 👉[Interactive Demo](https://nevademo.netlify.app/)
+---
 ### 👥 Authors
 
 <details>
