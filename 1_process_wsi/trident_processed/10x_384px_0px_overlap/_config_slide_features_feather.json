@@ -1,0 +1,25 @@
+{
+    "job_dir": "./trident_processed",
+    "wsi_source": "/mnt/hdd2_4t/hrz/\u795e\u7ecf\u6bcd\u7ec6\u80de\u7624/test",
+    "wsi_ext": [
+        ".jpeg",
+        ".png",
+        ".jpg",
+        ".mrxs",
+        ".tiff",
+        ".ndpi",
+        ".scn",
+        ".vms",
+        ".tif",
+        ".svs",
+        ".vmu",
+        ".sdpc"
+    ],
+    "skip_errors": false,
+    "target_magnification": 10,
+    "coords_dir": "10x_384px_0px_overlap",
+    "device": "cuda:0",
+    "batch_limit": 64,
+    "saveto": "10x_384px_0px_overlap/slide_features_feather",
+    "saveas": "h5"
+}

@@ -1,0 +1,65 @@
+General:
+    epochs: &epochs 100
+    seed: 42
+    acc_steps: 1
+    metric: "val_auc"
+
+fold: 0
+
+Data:
+    FM_type: 'Patch_Vision'  # FM的类型，Patch_Multimodal, Slide_Vision等
+    FM_name: 'titan'  # FM的类型，chief, titan、neva等
+    dataset_type: 'cls'
+    dataset_name: "nmyc"
+    cohort_name: 'Prospective_1' # choices=['Prospective_1', 'Prospective_2', 'Internal', 'PUFH', 'Shenzhen', 'GCI']
+    image_dir: null
+    report_dir: null   # 多模态的时候会有
+    dataframe: "/home/huruizhen/NEVA_lora/workspace/splits/nmyc.csv" # 换成mnt目录中的了
+    test_df: null
+    eval_df: null
+    batch_size: 12
+    num_workers: 1
+    wsi_batch: true
+
+Model:
+    name: "models.baseline.Patch_FM"
+    FM_type: 'Patch_Vision'
+    FM_name: 'conch'
+    wts_path: null
+    params:
+        FM_type: 'Patch_Vision'  # FM的类型，CHIEF, TITAN等
+        feat_dim: 2048
+        num_classes: 2
+        image_mil_name: "models.clam.CLAM_Batch"
+        mil_params:
+            hidden_feat: 512
+            gate: true
+            size_arg: 'small'
+            dropout: true
+            instance_eval: false
+            subtyping: false
+            k_sample: 16
+
+
+Optimizer:
+    optimizer:
+        name: Adam
+        params:
+            lr: 0.001
+            weight_decay: 0.01
+            amsgrad: False
+    lr_scheduler:
+        name: CosineAnnealingLR
+        params:
+            T_max: *epochs
+            last_epoch: -1
+
+
+
+# 将这个loss进行分类，如果是Classification任务，就用交叉熵损失函数，如果是回归任务，就用CoxSurvLoss
+Loss:
+    name: "torch.nn.CrossEntropyLoss"
+    params:
+        reduction: 'mean'
+
+

@@ -1,0 +1,53 @@
+General:
+  epochs: 100
+  seed: 123456
+  devices: 2
+  acc_steps: 1
+  metric: val_auc
+type:
+  type: MultiModal
+wts: workspace/models/config_cls_p36/
+seed&fold:
+- null
+- null
+Data:
+  dataset_name: cls
+  dataframe: workspace/splits_42/p36_42_folds.csv
+  label_name: p36
+  test_df: null
+  image_dir: /scratch/m000071-pm03/xiangjx/data/top200_patches
+  report_dir: workspace/data/pathology_report_en.csv
+  batch_size: 12
+  num_workers: 4
+  wsi_batch: true
+  tokenizer: ./musk/models/tokenizer.spm
+Model:
+  name: models.neva.NEVA
+  params:
+    image_mil_name: models.clam.CLAM_Batch
+    mil_params:
+      hidden_feat: 768
+      gate: true
+      size_arg: small
+      dropout: true
+      instance_eval: false
+      subtyping: false
+      k_sample: 16
+    feat_dim: 1024
+    num_classes: 2
+Optimizer:
+  optimizer:
+    name: Adam
+    params:
+      lr: 0.001
+      weight_decay: 0.01
+      amsgrad: false
+  lr_scheduler:
+    name: CosineAnnealingLR
+    params:
+      T_max: 100
+      last_epoch: -1
+Loss:
+  name: torch.nn.CrossEntropyLoss
+  params:
+    reduction: mean

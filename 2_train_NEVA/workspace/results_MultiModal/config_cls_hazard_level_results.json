@@ -1,0 +1,1 @@
+{"hazard_level_42_folds": {"seed": 1234, "macro_auc": 0.722, "macro_std": 0.0407, "folds": [0.7358, 0.7709, 0.7175, 0.6482, 0.7374]}}
