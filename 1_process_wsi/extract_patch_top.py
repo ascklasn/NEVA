@@ -45,7 +45,7 @@ MAX_BLACK_FRAC = 0.30
 MAX_WHITE_FRAC = 0.60
 WSI_FILE_EXTENSIONS = (".svs", ".tif", ".tiff", ".ndpi", ".mrxs", ".scn")
 BATCH_SIZE = 64
-MAX_TOP_PATCHES = 200
+MAX_TOP_PATCHES = 200 # select TOP K Pacthes, here we set K=200, you can change it as needed.
 TOP_SELECTION_FRACTION = 0.20
 ARTIFACT_SUBDIR = "artifacts"
 

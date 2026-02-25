@@ -1,3 +1,7 @@
 __pycache__/
 *.py[cod]
 .DS_Store
+
+1_process_wsi/wsis
+1_process_wsi/top200_patches
+1_process_wsi/trident_processed
