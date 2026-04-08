@@ -156,6 +156,13 @@ This model and associated code are released under the [MIT License](https://open
 ## Citation
 If you find our work helpful, feel free to give us a cite.
 ```bibtex
-TODO
-
+@software{xiaohu_2026_neva,
+  author    = {Ruizhen Hu and Jinxi Xiang},
+  title     = {NEVA: A Unified Vision-Language Model for Precision Oncology and Biomarker Prediction in Neuroblastoma},
+  year      = {2026},
+  publisher = {Zenodo},
+  version   = {v0.1},
+  doi       = {10.5281/zenodo.19472116},
+  url       = {https://doi.org/10.5281/zenodo.19472116}
+}
 ```
