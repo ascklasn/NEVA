@@ -288,7 +288,6 @@ def parse_args():
         action="append",
         default=[
             "wsi/ertong",
-            "wsi/qianzhan_24_06/20240607神母",
         ],
         help="Root directory containing WSIs; can be provided multiple times.",
     )

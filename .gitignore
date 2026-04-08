@@ -5,3 +5,5 @@ __pycache__/
 1_process_wsi/wsis
 1_process_wsi/top200_patches
 1_process_wsi/trident_processed
+
+3_evaluation/neva_wts

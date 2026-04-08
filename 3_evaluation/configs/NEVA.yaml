@@ -34,9 +34,9 @@ Model:
             k_sample: 16
         feat_dim: 1024
         num_classes: 2
-        return_feat: false
-        image_only: false
-        report_only: false
+        # return_feat: false
+        # image_only: false
+        # report_only: false
 
 
 Optimizer:

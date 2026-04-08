@@ -57,7 +57,7 @@ NEVA was trained and validated using the largest known multi-institutional neuro
 It achieves robust performance over unimodal and conventional models in:  
 
 - Classifying tumor **Risk Groups**, histologic **Subtypes**, **Mitotic-Karyorrhectic Index (MKI)**, and **Shimada classification**  
-- Predicting molecular markers: ***ALK***, ***NMYC***, ***CMYC***, ***1p36***, and ***11q23***  
+- Predicting molecular markers: **ALK**, **CMYC**, **1p36**, **11q23** and ***NMYC***. 
 - Forecasting **Progression-Free Survival (PFS)** and **Overall Survival (OS)**  
 
 > NEVA is scalable, interpretable, and data-efficient — a promising AI framework for precision neuroblastoma care across diverse clinical settings.
@@ -87,7 +87,7 @@ It achieves robust performance over unimodal and conventional models in:
 
 ## 🧪 WSI Preprocessing
 
-The WSI preprocessing pipeline is adapted from [TRIDENT](https://github.com/mahmoodlab/TRIDENT).,并且在WSI Preprocessing阶段使用他们的python环境
+The WSI preprocessing pipeline is adapted from [TRIDENT](https://github.com/mahmoodlab/TRIDENT). The official TRIDENT repository environment must be used for WSI preprocessing.
 
 We recommend directly using the official TRIDENT repository for tile extraction and feature extraction with Patch-Level and Slide-Level foundation models (e.g., UNI, CONCH, Virchow, CHIEF, MUSK, etc.).
 
@@ -121,36 +121,25 @@ Please refer to the official repository for setup and usage instructions.
 
 ## 💾 Model Weights Download
 
-Download the model weights from [HuggingFace Hub](https://huggingface.co/xiaohulovestudy/NEVA)
-NOTE: You need to agree to the terms to access the models and login with your HuggingFace write token:
+Download the model weights from the link below and place them in the `3_evaluation/neva_wts` folder.
 
-```python
-from huggingface_hub import login
-login(<huggingface write token>)    
-```
-
----
+| Task             | Performance     | Weights                                                                                        |
+| ---------------- | --------------- | ---------------------------------------------------------------------------------------------- |
+| Risk Group       | AUROC = 0.806   | [Download](https://drive.google.com/file/d/1g75iUeCsTXae_J3csr2O7UUUXRTaDZ2P/view?usp=sharing) |
+| Subtype          | AUROC = 0.916   | [Download](https://drive.google.com/file/d/1rCxmsO5RNk-q8KLe4mlUW5dKhBpLqufJ/view?usp=sharing) |
+| MKI              | AUROC = 0.791   | [Download](https://drive.google.com/file/d/11aHCpRlqcdt2WQ4peiPxywIiOL7cjH-P/view?usp=sharing) |
+| Shimada          | AUROC = 0.823   | [Download](https://drive.google.com/file/d/1upOALcXuY6JYkdyPFydZwKTV6VLaog8D/view?usp=sharing) |
+| ALK              | AUROC = 0.764   | [Download](https://drive.google.com/file/d/1g3uDkHVAUFzW5657grXOmgDiD5D0gtWA/view?usp=sharing) |
+| NMYC             | AUROC = 0.924   | [Download](https://drive.google.com/file/d/1EU3C7845uZAbmcen4eqAqoqX8kuZhYin/view?usp=sharing) |
+| CMYC             | AUROC = 0.703   | [Download](https://drive.google.com/file/d/18QO3jdP9jcWsRfwGkj1DKnwOhTrzypM-/view?usp=sharing) |
+| 1p36 Deletion    | AUROC = 0.830   | [Download](https://drive.google.com/file/d/1v0G2Ytz_l9HmpiDzKtztfiTdkqcHkUN1/view?usp=sharing) |
+| 11q23 Deletion   | AUROC = 0.776   | [Download](https://drive.google.com/file/d/1dnPoJxA2LaZGQG0D6esHeLHaDwa1kPZK/view?usp=sharing) |
+| Overall Survival | C-index = 0.717 | [Download](https://drive.google.com/file/d/1Z_sPkAMqHHL6QGL5Bgmal7rVou2xZaDW/view?usp=sharing) |
+| PFS              | C-index = 0.645 | [Download](https://drive.google.com/file/d/14UsRMndaSZSnVJ7nmiYJdB2Jpvm4eza7/view?usp=sharing) |
 
 ## 🏋️ How to use NEVA
 
-1. Perform inference on your custom dataset using the pretrained weights.  
-
-   1. Navigate to `./4_evaluation` directory:
-
-        ```bash
-        cd ./3_evaluation
-        ```
-
-   2. Run inference script:
-
-       ```bash
-       python inference.py --csv_list nmyc --dataset_type cls --image_dir ../1_process_wsi/top200_patches --eval_df path/to/your/eval_csv   
-       ```
-
-    > - `--dataset_type`: `cls` for classification, `reg` for Cox regression
-    > - `--csv_list`: '1p36', '11q23', 'alk', 'cmyc', 'risk_group', 'mki', 'nmyc', 'shimada', 'subtype', 'os', 'pfs'
-
-    > Output: The result of the model inference will be saved in `./eval_results/`
+First, you need to request access to the [MUSK](https://huggingface.co/xiangjx/musk) model on Hugging Face. Then, please refer to `3_evaluation/demo.ipynb` for an example.
 
 ---
 

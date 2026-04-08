@@ -73,7 +73,7 @@ class MILModel(pl.LightningModule):
 
         self.criterion = get_obj_from_str(config["Loss"]["name"])(**config['Loss']['params'])
 
-        self.model = get_obj_from_str(config["Model"]["name"])(config["Model"]["params"])
+        self.model = get_obj_from_str(config["Model"]["name"])(**config["Model"]["params"])
 
         self.validation_step_outputs = []   # 用于记录验证集的每个step的输出，最后拼接起来然后计算metric
         self.test_step_outputs = []         #  用于记录test集的每个step的输出，最后拼接起来然后计算metric
