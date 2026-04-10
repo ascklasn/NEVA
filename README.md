@@ -8,10 +8,7 @@
 <details>
 <summary>Click to expand author list</summary>
 
-Jin Zhu¹⁰‡, Ruizhen Hu²‡, Sen Yang¹³‡, Qing Sun⁵‡, Zhenzhen Zhao¹, Juan Cao⁶, Peiying Pan⁷, Kun Wang⁷, Liyan Cui⁸,
-Hongping Tang⁹, Qianqian Fang¹, Sijin Jiang¹, Linli Lei¹, Wenjian Zhang¹, Jiajun Xie¹, Shuo Kang¹, Dongyuan Xiao¹,
-Ming Xiao¹², Xuan Zhai¹, Yuntao Jia¹, Junyang Chen², Wei Yuan⁴, Xiao Han⁴, Junhan Zhao¹¹, Xiyue Wang³\*
-Yi Li²\*, [Jinxi Xiang](https://jinxixiang.com/)³\*, Biyue Zhu¹\*
+Jin Zhu<sup>1,9‡</sup>, Ruizhen Hu<sup>2‡</sup>, Sen Yang<sup>3‡</sup>, Qing Sun<sup>4‡</sup>, Zhenzhen Zhao<sup>1</sup>, Juan Cao<sup>5</sup>, Peiying Pan<sup>6</sup>, Kun Wang<sup>6</sup>, Liyan Cui<sup>7</sup>, Hongping Tang<sup>8</sup>, Qianqian Fang<sup>1</sup>, Sijin Jiang<sup>1</sup>, Linli Lei<sup>1</sup>, Wenjian Zhang<sup>1</sup>, Jiajun Xie<sup>1</sup>, Shuo Kang<sup>1</sup>, Dongyuan Xiao<sup>1</sup>, Ming Xiao<sup>9</sup>, Xuan Zhai<sup>1</sup>, Yuntao Jia<sup>1</sup>, Junyang Chen<sup>2</sup>, Wei Yuan<sup>10</sup>, Xiao Han<sup>10</sup>, Le Lu<sup>3</sup>, Junhan Zhao<sup>11,12,13</sup>, Xiyue Wang<sup>14</sup>, Yi Li<sup>2*</sup>, Jinxi Xiang<sup>14*</sup>, Biyue Zhu<sup>1*</sup>
 
 > ‡ Equal contribution · *Corresponding authors: [Biyue Zhu](mailto:biyuezhu@hospital.cqmu.edu.cn), [Jinxi Xiang](mailto:xiangjx@stanford.edu), [Yi Li](mailto:liyi@sz.tsinghua.edu.cn)*
 
@@ -24,19 +21,20 @@ Yi Li²\*, [Jinxi Xiang](https://jinxixiang.com/)³\*, Biyue Zhu¹\*
 <details>
 <summary>Click to expand affiliations</summary>
 
-1. Children’s Hospital of Chongqing Medical University, Chongqing, China
+1. Children’s Hospital of Chongqing Medical University, National Clinical Research Center for Child Health and Disorders, Ministry of Education Key Laboratory of Child Development and Disorders, China International Science and Technology Cooperation base of Child Development and Critical Disorders, Chongqing, China
 2. Shenzhen International Graduate School, Tsinghua University, Shenzhen, China
-3. Department of Radiation Oncology, Stanford University School of Medicine, Palo Alto, USA
-4. College of Biomedical Engineering, Sichuan University, Chengdu, China
-5. Peking University First Hospital, Beijing, China
-6. Shenzhen Children’s Hospital, Shenzhen, China
-7. Guiyang Maternal and Child Health Care Hospital, Guiyang, China
-8. Inner Mongolia Maternity and Child Health Care Hospital, Hohhot, China
-9. Shenzhen Maternity and Child Healthcare Hospital, Southern Medical University, Shenzhen, China
-10. Department of Pathology, Chongqing Medical University, China
-11. Department of Biomedical Informatics, Harvard Medical School, Boston, USA
-12. Molecular Medicine Diagnostic and Testing Center, Chongqing Medical University, China
-13. Ant Group
+3. Ant Group, Sunnyvale, CA, USA
+4. Department of Pediatrics, Department of Pathology, Peking University First Hospital, Beijing, China
+5. Department of Pathology, Shenzhen Children’s Hospital, Shenzhen, China
+6. Guiyang Maternal and Child Health Care Hospital, Guiyang, China 
+7. Pathology Department, Inner Mongolia Maternity and Child Health Care Hospital,  Hohhot, China
+8. Department of Pathology, Shenzhen Maternity and Child Healthcare Hospital, Southern Medical University, Shenzhen, China
+9. Department of Pathology, College of Basic Medicine, Chongqing Medical University, Molecular Medicine Diagnostic and Testing Center, Chongqing Medical University, Chongqing, China
+10. College of Biomedical Engineering, Sichuan University, Chengdu, China
+11. Department of Biomedical Informatics, Harvard Medical School, Boston, MA, USA
+12. Department of Pediatrics, the University of Chicago, Chicago, IL, USA
+13. Comprehensive Cancer Center, University of Chicago Medicine, Chicago, IL 60637, USA
+14. Department of Radiation Oncology, Stanford University School of Medicine, Palo Alto, CA, USA
 
 </details>
 
