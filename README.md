@@ -123,17 +123,17 @@ Download the model weights from the link below and place them in the `3_evaluati
 
 | Task             | Performance     | Weights                                                                                        |
 | ---------------- | --------------- | ---------------------------------------------------------------------------------------------- |
-| Risk Group       | AUROC = 0.806   | [Download](https://drive.google.com/file/d/1g75iUeCsTXae_J3csr2O7UUUXRTaDZ2P/view?usp=sharing) |
-| Subtype          | AUROC = 0.916   | [Download](https://drive.google.com/file/d/1rCxmsO5RNk-q8KLe4mlUW5dKhBpLqufJ/view?usp=sharing) |
-| MKI              | AUROC = 0.791   | [Download](https://drive.google.com/file/d/11aHCpRlqcdt2WQ4peiPxywIiOL7cjH-P/view?usp=sharing) |
-| Shimada          | AUROC = 0.823   | [Download](https://drive.google.com/file/d/1upOALcXuY6JYkdyPFydZwKTV6VLaog8D/view?usp=sharing) |
-| ALK              | AUROC = 0.764   | [Download](https://drive.google.com/file/d/1g3uDkHVAUFzW5657grXOmgDiD5D0gtWA/view?usp=sharing) |
-| NMYC             | AUROC = 0.924   | [Download](https://drive.google.com/file/d/1EU3C7845uZAbmcen4eqAqoqX8kuZhYin/view?usp=sharing) |
-| CMYC             | AUROC = 0.703   | [Download](https://drive.google.com/file/d/18QO3jdP9jcWsRfwGkj1DKnwOhTrzypM-/view?usp=sharing) |
-| 1p36 Deletion    | AUROC = 0.830   | [Download](https://drive.google.com/file/d/1v0G2Ytz_l9HmpiDzKtztfiTdkqcHkUN1/view?usp=sharing) |
-| 11q23 Deletion   | AUROC = 0.776   | [Download](https://drive.google.com/file/d/1dnPoJxA2LaZGQG0D6esHeLHaDwa1kPZK/view?usp=sharing) |
-| Overall Survival | C-index = 0.717 | [Download](https://drive.google.com/file/d/1Z_sPkAMqHHL6QGL5Bgmal7rVou2xZaDW/view?usp=sharing) |
-| PFS              | C-index = 0.645 | [Download](https://drive.google.com/file/d/14UsRMndaSZSnVJ7nmiYJdB2Jpvm4eza7/view?usp=sharing) |
+| Risk Group       | AUROC = 0.806   | [Download](https://drive.google.com/file/d/1PRkusD2nSe3ARoffPmvXZXjqJdnwBHDO/view?usp=drive_link) |
+| Subtype          | AUROC = 0.916   | [Download](https://drive.google.com/file/d/1CVwRb7W-o17fC1qnWjzzHOb3roruCIP0/view?usp=drive_link) |
+| MKI              | AUROC = 0.791   | [Download](https://drive.google.com/file/d/1MqAY9fCk0XR7llaN2_QMK7cxn3dea_Qp/view?usp=drive_link) |
+| Shimada          | AUROC = 0.823   | [Download](https://drive.google.com/file/d/1IPSUTIcGiDcih5A85i2Kw1knrK2IQJtv/view?usp=drive_link) |
+| ALK              | AUROC = 0.764   | [Download](https://drive.google.com/file/d/15J0aDWIiy3esNwYLWZyWdFAgVh5rhArB/view?usp=drive_link) |
+| NMYC             | AUROC = 0.924   | [Download](https://drive.google.com/file/d/1QQd3Cncu_c_riu9cT7zFYf96Bf5ZCDDM/view?usp=drive_link) |
+| CMYC             | AUROC = 0.703   | [Download](https://drive.google.com/file/d/1oqCu03t4z3TeLo11bFiBdYynP2MKoPyv/view?usp=drive_link) |
+| 1p36             | AUROC = 0.830   | [Download](https://drive.google.com/file/d/18UgWL9c5Rs9HRrGAkGyH41vk0uGQNnG6/view?usp=drive_link) |
+| 11q23            | AUROC = 0.776   | [Download](https://drive.google.com/file/d/1RC8zM4mIpytN6AUqYIHGynouW6NkT64P/view?usp=drive_link) |
+| OS               | C-index = 0.717 | [Download](https://drive.google.com/file/d/1LyqfrpL_p53r1KKwr0wiYwTP-jXz9JkF/view?usp=drive_link) |
+| PFS              | C-index = 0.645 | [Download](https://drive.google.com/file/d/1_Q6-yWI5z0rS9hlZTRAFfpoOXntXPwEX/view?usp=drive_link) |
 
 ## 🏋️ How to use NEVA
 
