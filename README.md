@@ -77,19 +77,16 @@ It achieves robust performance over unimodal and conventional models in:
 2. Create and activate the conda environment:
 
     ```bash
-    conda env create -n NEVA -f environment.yml
+    conda env create -n NEVA python=3.10
     conda activate NEVA
+    pip install -r requirements.txt
     ```
 
 ---
 
 ## 🧪 WSI Preprocessing
 
-The WSI preprocessing pipeline is adapted from [TRIDENT](https://github.com/mahmoodlab/TRIDENT). The official TRIDENT repository environment must be used for WSI preprocessing.
-
-We recommend directly using the official TRIDENT repository for tile extraction and feature extraction with Patch-Level and Slide-Level foundation models (e.g., UNI, CONCH, Virchow, CHIEF, MUSK, etc.).
-
-Please refer to the official repository for setup and usage instructions.
+The WSI preprocessing pipeline is adapted from [TRIDENT](https://github.com/mahmoodlab/TRIDENT). 
 
 1. Navigate to the preprocessing directory:
 
